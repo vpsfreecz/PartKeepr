@@ -90,12 +90,18 @@ doctrine:
                 dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
                 alias: GedmoTree # this one is optional and will default to the name set for the mapping
                 is_bundle: false
+            filters:
+              softdeleteable:
+                class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+                enabled: true
 
 stof_doctrine_extensions:
     default_locale: en_US
     orm:
         default:
             tree: true
+            softdeleteable: true
+
 
 twig:
     exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'

@@ -2,8 +2,11 @@
 namespace PartKeepr\Util;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation\SoftDeleteable;
 
-/** @ORM\MappedSuperclass */
+/** @ORM\MappedSuperclass
+ *  @SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ */
 abstract class BaseEntity {
 	/**
 	* @ORM\Id
@@ -21,5 +24,9 @@ abstract class BaseEntity {
 	public function getId () {
 		return $this->id;
 	}
-	
+
+	/**
+	 * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
+	 */
+	private $deletedAt;
 }
