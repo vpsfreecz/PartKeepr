@@ -2,11 +2,11 @@
 namespace PartKeepr\PartBundle\Controller;
 
 use Doctrine\ORM\EntityManager;
-use Dunglas\ApiBundle\Controller\ResourceController;
 use Dunglas\ApiBundle\JsonLd\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class PartMeasurementUnitController extends ResourceController
+class PartMeasurementUnitController extends Controller
 {
     public function setDefaultAction(Request $request, $id)
     {

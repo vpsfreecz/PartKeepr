@@ -9,6 +9,9 @@ Ext.define("PartKeepr.data.HydraProxy", {
         type: 'jsonwithassociations'
     },
     appendId: false,
+    extraParams: {
+      "_format": "json"
+    },
     limitParam: "itemsPerPage",
     defaultListenerScope: true,
     sortParam: "order",

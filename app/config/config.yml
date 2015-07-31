@@ -3,25 +3,14 @@ imports:
     - { resource: security.yml }
     - { resource: partkeepr.yml }
 
-fos_rest:
-    body_listener: true
-    format_listener: true
-    param_fetcher_listener: force
-    view:
-        exception_wrapper_handler: PartKeepr\DoctrineReflectionBundle\Exception\ExceptionWrapperHandler
-        default_engine: php
-        formats:
-            json: true
-            xml: true
-        templating_formats:
-            html: false
-        view_response_listener: force
-
-
-
 sensio_framework_extra:
     view:    { annotations: false }
     router:  { annotations: true }
+
+fos_rest:
+    param_fetcher_listener: true
+    view:
+      view_response_listener: enabled
 
 framework:
     #esi:             ~
@@ -111,18 +100,10 @@ dunglas_api:
     description: "The PartKeepr REST API"
     collection:
         pagination:
+            client_can_enable: true
             items_per_page:
-                enable_client_request: true
-
-nelmio_api_doc:
-    sandbox:
-        accept_type:        "application/json"
-        body_format:
-            formats:        [ "json" ]
-            default_format: "json"
-        request_format:
-            formats:
-                json:       "application/json"
+                default: 30
+                client_can_change: true
 
 services:
     footprint.category_path_listener:

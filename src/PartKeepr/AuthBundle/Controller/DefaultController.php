@@ -15,6 +15,7 @@ use PartKeepr\AuthBundle\Entity\UserManager;
 use PartKeepr\AuthBundle\Entity\User\Exceptions\InvalidLoginDataException;
 use PartKeepr\AuthBundle\Validator\Constraints\Username;
 use PartKeepr\AuthBundle\Validator\Constraints\PasswordMD5Hash;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class DefaultController extends FOSRestController
@@ -58,6 +59,6 @@ class DefaultController extends FOSRestController
         $loginResponse->isAdmin = $session->getUser()->isAdmin();
         //$loginResponse->userPreferences = $session->getUser()->getPreferences();
 
-        return $loginResponse;
+        return new JsonResponse($loginResponse);
     }
 }

@@ -1,17 +1,21 @@
 <?php
 namespace PartKeepr\CategoryBundle\Controller;
 
-use Dunglas\ApiBundle\Controller\ResourceController;
+use Dunglas\ApiBundle\Action\ActionUtilTrait;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
 use Gedmo\Tree\Entity\Repository\AbstractTreeRepository;
 use PartKeepr\CategoryBundle\Exception\MissingParentCategoryException;
 use PartKeepr\CategoryBundle\Exception\RootMayNotBeMovedException;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CategoryController extends ResourceController
+
+class CategoryController extends Controller
 {
+    use ActionUtilTrait;
+
     /**
      * Moves a node to another node
      *
@@ -26,8 +30,11 @@ class CategoryController extends ResourceController
      */
     public function moveAction(Request $request, $id)
     {
-        $resource = $this->getResource($request);
-        $entity = $this->findOrThrowNotFound($resource, $id);
+        list($resourceType) = $this->extractAttributes($request);
+
+        $dataProvider = $this->get("api.data_provider");
+        $entity = $this->getItem($dataProvider, $resourceType, $id);
+
         $parentId = $request->request->get("parent");
 
         $parentEntity = $this->get("api.iri_converter")->getItemFromIri($parentId);
@@ -60,9 +67,9 @@ class CategoryController extends ResourceController
      */
     public function getExtJSRootNodeAction(Request $request)
     {
-        $resource = $this->getResource($request);
+        list($resourceType) = $this->extractAttributes($request);
 
-        $repository = $this->getDoctrine()->getManager()->getRepository($resource->getEntityClass());
+        $repository = $this->getDoctrine()->getManager()->getRepository($resourceType->getEntityClass());
 
         /**
          * @var $repository AbstractTreeRepository
@@ -72,7 +79,7 @@ class CategoryController extends ResourceController
         $data = $this->get('serializer')->normalize(
             $rootNode,
             'json-ld',
-            $resource->getNormalizationContext()
+            $resourceType->getNormalizationContext()
         );
 
         $responseData = array("children" => $data);
