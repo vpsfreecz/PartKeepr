@@ -10,11 +10,12 @@ use Doctrine\ORM\Version as ORMVersion;
 use PartKeepr\CoreBundle\System\OperatingSystem;
 use PartKeepr\CoreBundle\System\SystemInformationRecord;
 use PartKeepr\CronLoggerBundle\Services\CronLoggerService;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class SystemService extends ContainerAware
+class SystemService
 {
+    use ContainerAwareTrait;
     /**
      * @var EntityManager
      */

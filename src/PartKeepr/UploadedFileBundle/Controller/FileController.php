@@ -73,10 +73,5 @@ abstract class FileController extends Controller
         }
     }
 
-    /**
-     * Returns the entity class (FQDN) for operation.
-     *
-     * @return string
-     */
-    abstract protected function getEntityClass();
+
 }

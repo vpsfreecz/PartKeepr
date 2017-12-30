@@ -14,8 +14,6 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 
 class ChangePasswordAction
 {
-    use ActionUtilTrait;
-
     /**
      * @var UserService
      */

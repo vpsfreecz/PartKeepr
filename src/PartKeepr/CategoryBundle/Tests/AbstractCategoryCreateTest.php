@@ -2,9 +2,9 @@
 
 namespace PartKeepr\CategoryBundle\Tests;
 
+use ApiPlatform\Core\Bridge\Symfony\Routing\IriConverter;
 use Doctrine\Common\DataFixtures\ProxyReferenceRepository;
-use Dunglas\ApiBundle\Api\IriConverter;
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 
 abstract class AbstractCategoryCreateTest extends WebTestCase
 {
@@ -31,22 +31,21 @@ abstract class AbstractCategoryCreateTest extends WebTestCase
         /**
          * @var IriConverter
          */
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
 
         $request = [
             'parent' => $iriConverter->getIriFromItem($rootCategory),
             'name'   => 'test',
         ];
 
-        $resource = $this->getContainer()->get('api.resource_collection')->getResourceForEntity($this->getResourceClass());
-        $iri = $iriConverter->getIriFromResource($resource);
+        $iri = $iriConverter->getIriFromResourceClass($this->getResourceClass());
 
         $client->request(
             'POST',
             $iri,
             [],
             [],
-            ['CONTENT_TYPE' => 'application/json'],
+            ['CONTENT_TYPE' => 'application/ld+json', 'HTTP_ACCEPT' => 'application/ld+json'],
             json_encode($request)
         );
 
@@ -70,21 +69,20 @@ abstract class AbstractCategoryCreateTest extends WebTestCase
         /**
          * @var IriConverter
          */
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
 
         $request = [
             'name' => 'test',
         ];
 
-        $resource = $this->getContainer()->get('api.resource_collection')->getResourceForEntity($this->getResourceClass());
-        $iri = $iriConverter->getIriFromResource($resource);
+        $iri = $iriConverter->getIriFromResourceClass($this->getResourceClass());
 
         $client->request(
             'POST',
             $iri,
             [],
             [],
-            ['CONTENT_TYPE' => 'application/json'],
+            ['CONTENT_TYPE' => 'application/ld+json', 'HTTP_ACCEPT' => 'application/ld+json'],
             json_encode($request)
         );
 

@@ -4,7 +4,6 @@ namespace PartKeepr\CoreBundle\Services;
 
 use Doctrine\ORM\EntityManager;
 use PartKeepr\CoreBundle\Entity\SystemNotice;
-use Symfony\Component\DependencyInjection\ContainerAware;
 
 class SystemNoticeService
 {

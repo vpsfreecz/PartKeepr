@@ -3,7 +3,7 @@
 namespace PartKeepr\AuthBundle\Tests;
 
 use PartKeepr\AuthBundle\Entity\User;
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 
 class LegacyAuthTest extends WebTestCase
 {

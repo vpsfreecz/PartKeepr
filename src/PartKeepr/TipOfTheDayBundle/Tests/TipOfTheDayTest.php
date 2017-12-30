@@ -4,7 +4,7 @@ namespace PartKeepr\TipOfTheDayBundle\Tests;
 
 use Doctrine\Common\DataFixtures\ProxyReferenceRepository;
 use Dunglas\ApiBundle\Api\IriConverter;
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 
 class TipOfTheDayTest extends WebTestCase
 {
@@ -32,7 +32,7 @@ class TipOfTheDayTest extends WebTestCase
         /**
          * @var IriConverter
          */
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
 
         $iri = $iriConverter->getIriFromItem($tip);
         $iri .= '/markTipRead';

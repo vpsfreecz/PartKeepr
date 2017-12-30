@@ -2,7 +2,7 @@
 
 namespace PartKeepr\UploadedFileBundle\Tests;
 
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileControllerTest extends WebTestCase

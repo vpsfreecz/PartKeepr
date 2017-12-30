@@ -2,6 +2,7 @@
 
 namespace PartKeepr\FootprintBundle\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use PartKeepr\ImageBundle\Entity\Image;
 
@@ -9,6 +10,16 @@ use PartKeepr\ImageBundle\Entity\Image;
  * Holds a footprint image.
  *
  * @ORM\Entity
+ * @ApiResource(
+ *
+ *     itemOperations={
+ *      "get"={"method"="GET"},
+ *      "put"={"method"="PUT"},
+ *      "delete"={"method"="DELETE"},
+ *      "getImage"={"route_name"="footprint_image.get_image"}
+ *     },
+ *     attributes={"filters"={"doctrine_reflection_service.search_filter"}}
+ *     )
  **/
 class FootprintImage extends Image
 {

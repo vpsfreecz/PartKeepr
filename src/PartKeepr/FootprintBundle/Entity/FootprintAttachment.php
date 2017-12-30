@@ -2,6 +2,7 @@
 
 namespace PartKeepr\FootprintBundle\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use PartKeepr\UploadedFileBundle\Entity\UploadedFile;
 
@@ -9,6 +10,17 @@ use PartKeepr\UploadedFileBundle\Entity\UploadedFile;
  * Holds a footprint attachment.
  *
  * @ORM\Entity
+ *
+ *  @ApiResource(
+ *     itemOperations={
+ *     "get"={"method"="GET"},
+ *      "put"={"method"="PUT"},
+ *      "delete"={"method"="DELETE"},
+ *          "getFile"={"route_name"="footprint_attachment.get_image"},
+ *          "getMimeTypeIcon"={"route_name"="footprint_attachment.get_mimetype_icon"},
+ *     },
+ *     attributes={"filters"={"doctrine_reflection_service.search_filter"}}
+ *     )
  **/
 class FootprintAttachment extends UploadedFile
 {

@@ -2,6 +2,7 @@
 
 namespace PartKeepr\CoreBundle\Tests;
 
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 use PartKeepr\CoreBundle\Services\VersionService;
 
 class VersionServiceTest extends WebTestCase

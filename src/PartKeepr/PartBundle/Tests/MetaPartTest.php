@@ -3,10 +3,10 @@
 namespace PartKeepr\PartBundle\Tests;
 
 use Doctrine\Common\DataFixtures\ProxyReferenceRepository;
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 use PartKeepr\PartBundle\Entity\Part;
 
-class MetaPartTest extends WebTestCase
+class MetaPartTest extends \PartKeepr\CoreBundle\Foobar\WebTestCase
 {
     /**
      * @var ProxyReferenceRepository

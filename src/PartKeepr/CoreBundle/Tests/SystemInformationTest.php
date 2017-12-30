@@ -2,6 +2,8 @@
 
 namespace PartKeepr\CoreBundle\Tests;
 
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
+
 class SystemInformationTest extends WebTestCase
 {
     public function testSystemInformation()

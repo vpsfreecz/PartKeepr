@@ -3,14 +3,14 @@
 namespace PartKeepr\AuthBundle\Tests\Services;
 
 use PartKeepr\AuthBundle\Entity\User;
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 
 class UserPreferenceServiceTest extends WebTestCase
 {
     public function testBasics()
     {
         $service = $this->getContainer()->get('partkeepr.user_preference_service');
-        $userService = $this->getContainer()->get('partkeepr.userservice');
+        $userService = $this->getContainer()->get('partkeepr.user_service');
 
         /**
          * @var User
@@ -49,12 +49,12 @@ class UserPreferenceServiceTest extends WebTestCase
     public function testGetPreferenceException()
     {
         $service = $this->getContainer()->get('partkeepr.user_preference_service');
-        $userService = $this->getContainer()->get('partkeepr.userservice');
+        $userService = $this->getContainer()->get('partkeepr.user_service');
 
         /**
          * @var User
          */
-        $user = $this->getContainer()->get('partkeepr.userservice')->getProxyUser('admin',
+        $user = $this->getContainer()->get('partkeepr.user_service')->getProxyUser('admin',
             $userService->getBuiltinProvider(), true);
 
         $this->setExpectedException("PartKeepr\AuthBundle\Exceptions\UserPreferenceNotFoundException");

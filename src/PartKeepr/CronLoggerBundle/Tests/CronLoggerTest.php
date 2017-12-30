@@ -2,7 +2,7 @@
 
 namespace PartKeepr\CronLoggerBundle\Tests;
 
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 
 class CronLoggerTest extends WebTestCase
 {

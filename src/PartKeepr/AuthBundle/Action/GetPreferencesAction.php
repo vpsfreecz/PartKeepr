@@ -2,14 +2,13 @@
 
 namespace PartKeepr\AuthBundle\Action;
 
-use Dunglas\ApiBundle\Action\ActionUtilTrait;
-use Dunglas\ApiBundle\Api\ResourceInterface;
-use Dunglas\ApiBundle\Exception\RuntimeException;
 use PartKeepr\AuthBundle\Services\UserPreferenceService;
 use PartKeepr\AuthBundle\Services\UserService;
-use PartKeepr\CategoryBundle\Exception\RootNodeNotFoundException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Serializer;
 
 /**
@@ -45,9 +44,16 @@ class GetPreferencesAction
     /**
      * Retrieves a collection of resources.
      *
+     * @Route(
+     *     name="user_preferences",
+     *     path="/api/user_preferences",
+     * )
+     * @Security("has_role('ROLE_USER')")
+     * @Method("GET")
      * @param Request $request
+     * @return JsonResponse
      */
-    public function __invoke(Request $request)
+    public function __invoke($data = null, Request $request)
     {
         $user = $this->userService->getUser();
 

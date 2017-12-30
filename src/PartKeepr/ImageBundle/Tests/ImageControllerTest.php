@@ -2,10 +2,10 @@
 
 namespace PartKeepr\ImageBundle\Tests;
 
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class ImageControllerTest extends WebTestCase
+class ImageControllerTest extends \PartKeepr\CoreBundle\Foobar\WebTestCase
 {
     public function testGetImage()
     {
@@ -47,7 +47,7 @@ class ImageControllerTest extends WebTestCase
         $this->assertEquals(51, $imageSize[0]);
         $this->assertEquals(23, $imageSize[1]);
 
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
 
         $image = $iriConverter->getItemFromIri($imageId);
 

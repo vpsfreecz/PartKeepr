@@ -57,9 +57,10 @@ class ExecuteBatchJobAction
      * @param Request $request
      *
      * @throws RootNodeNotFoundException
+     *
      * @Route(
      *     name="batch_job_execute",
-     *     path="/batch_jobs/{id}/execute",
+     *     path="/api/batch_jobs/{id}/execute",
      *     defaults={"_api_resource_class"=BatchJob::class, "_api_item_operation_name"="execute"}
      * )
      * @return array

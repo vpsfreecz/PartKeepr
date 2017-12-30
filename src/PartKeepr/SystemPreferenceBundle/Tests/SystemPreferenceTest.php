@@ -2,7 +2,7 @@
 
 namespace PartKeepr\SystemPreferenceBundle\Tests;
 
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 use PartKeepr\SystemPreferenceBundle\Exceptions\SystemPreferenceNotFoundException;
 
 class SystemPreferenceTest extends WebTestCase

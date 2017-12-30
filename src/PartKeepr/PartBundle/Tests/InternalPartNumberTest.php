@@ -4,9 +4,9 @@ namespace PartKeepr\PartBundle\Tests;
 
 use Doctrine\Common\DataFixtures\ProxyReferenceRepository;
 use Dunglas\ApiBundle\Api\IriConverter;
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 
-class InternalPartNumberTest extends WebTestCase
+class InternalPartNumberTest extends \PartKeepr\CoreBundle\Foobar\WebTestCase
 {
     /**
      * @var ProxyReferenceRepository
@@ -34,7 +34,7 @@ class InternalPartNumberTest extends WebTestCase
         /**
          * @var IriConverter
          */
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
 
         $part = [
             "name"               => "foobar",

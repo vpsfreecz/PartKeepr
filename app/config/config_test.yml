@@ -12,8 +12,15 @@ web_profiler:
     toolbar: false
     intercept_redirects: false
 
-dunglas_api:
-    cache: false
+monolog:
+    handlers:
+        main:
+            type:   stream
+            path:   "%kernel.logs_dir%/test.log"
+            level:  info
+        console:
+            type:   console
+            bubble: false
 
 doctrine:
     dbal:

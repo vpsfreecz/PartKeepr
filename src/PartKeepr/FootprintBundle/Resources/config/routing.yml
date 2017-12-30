@@ -1,0 +1,17 @@
+footprint_image.get_image:
+    path:  '/footprint_image/{id}/getImage'
+    methods:  ['GET']
+    defaults:
+        _controller:     'PartKeeprFootprintBundle:FootprintImage:getImage'
+
+footprint_attachment.get_image:
+    path:  '/footprint_attachment/{id}/getFile'
+    methods:  ['GET']
+    defaults:
+        _controller:     'PartKeeprFootprintBundle:FootprintAttachment:getFile'
+
+footprint_attachment.get_mimetype_icon:
+    path:  '/footprint_attachment/{id}/getMimeTypeIcon'
+    methods:  ['GET']
+    defaults:
+        _controller:     'PartKeeprFootprintBundle:FootprintAttachment:getMimeTypeIcon'

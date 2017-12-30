@@ -8,6 +8,8 @@
 
 namespace PartKeepr\CoreBundle\Tests;
 
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
+
 /**
  * Special WebTestCase which forces to load the AppKernel. This is because the base getKernelClass() method
  * does wildcard matching on *Kernel.php within the app/ directory, and on some systems it might happen that

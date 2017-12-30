@@ -50,6 +50,16 @@ _export:
 _setup:
     resource: "@PartKeeprSetupBundle/Resources/config/routing.yml"
 
+_auth:
+    resource: "@PartKeeprAuthBundle/Resources/config/routing.yml"
+
+
+_footprint:
+    resource: "@PartKeeprFootprintBundle/Resources/config/routing.yml"
+
+_batchjob:
+    resource: "@PartKeeprBatchJobBundle/Resources/config/routing.yml"
+
 api:
     resource: "."
     type:     "api_platform"

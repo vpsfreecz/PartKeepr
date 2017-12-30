@@ -6,9 +6,13 @@ imports:
     - { resource: config_doctrine.yml }
     - { resource: config_fos_user.yml }
     - { resource: config_dunglas.yml }
-    - { resource: config_ldap.yml }
+    - { resource: config_api_platform.yml }
+#    - { resource: config_ldap.yml }
     - { resource: config_partkeepr.yml }
     - { resource: config_filesystem.yml }
+
+
+
 
 fos_rest:
     body_listener: true
@@ -47,7 +51,7 @@ assetic:
         #    jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar
 
 twig:
-    exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
+#    exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
 
 sprite_generator:
     sprites:
@@ -72,26 +76,27 @@ sprite_generator:
             imagePositioning: min-image
             imageGenerator: gd2
 
-fr3d_ldap:
-    driver:
-        host:                   "%fr3d_ldap.driver.host%"
-        port:                   "%fr3d_ldap.driver.port%"
-        username:               "%fr3d_ldap.driver.username%"
-        password:               "%fr3d_ldap.driver.password%"
-        bindRequiresDn:         "%fr3d_ldap.driver.bindRequiresDn%"
-        baseDn:                 "%fr3d_ldap.driver.baseDn%"
-        accountFilterFormat:    "%fr3d_ldap.driver.accountFilterFormat%"
-        optReferrals:           "%fr3d_ldap.driver.optReferrals%"
-        useSsl:                 "%fr3d_ldap.driver.useSsl%"
-        useStartTls:            "%fr3d_ldap.driver.useStartTls%"
-        accountCanonicalForm:   "%fr3d_ldap.driver.accountCanonicalForm%"
-        accountDomainName:      "%fr3d_ldap.driver.accountDomainName%"
-        accountDomainNameShort: "%fr3d_ldap.driver.accountDomainNameShort%"
-    user:
-        baseDn: "%fr3d_ldap.user.baseDn%"
-        filter: "%fr3d_ldap.user.filter%"
+#fr3d_ldap:
+#    driver:
+#        host:                   "%fr3d_ldap.driver.host%"
+#        port:                   "%fr3d_ldap.driver.port%"
+#        username:               "%fr3d_ldap.driver.username%"
+#        password:               "%fr3d_ldap.driver.password%"
+#        bindRequiresDn:         "%fr3d_ldap.driver.bindRequiresDn%"
+#        baseDn:                 "%fr3d_ldap.driver.baseDn%"
+#        accountFilterFormat:    "%fr3d_ldap.driver.accountFilterFormat%"
+#        optReferrals:           "%fr3d_ldap.driver.optReferrals%"
+#        useSsl:                 "%fr3d_ldap.driver.useSsl%"
+#        useStartTls:            "%fr3d_ldap.driver.useStartTls%"
+#        accountCanonicalForm:   "%fr3d_ldap.driver.accountCanonicalForm%"
+#        accountDomainName:      "%fr3d_ldap.driver.accountDomainName%"
+#        accountDomainNameShort: "%fr3d_ldap.driver.accountDomainNameShort%"
+#    user:
+#        baseDn: "%fr3d_ldap.user.baseDn%"
+#        filter: "%fr3d_ldap.user.filter%"
 
 services:
+    # default configuration for services in *this* file
     serializer.normalizer.custom:
         class: Symfony\Component\Serializer\Normalizer\ObjectNormalizer
         arguments:

@@ -3,7 +3,7 @@
 namespace PartKeepr\PartBundle\Tests\Issues;
 
 use Doctrine\Common\DataFixtures\ProxyReferenceRepository;
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 use PartKeepr\PartBundle\Entity\Part;
 use PartKeepr\StockBundle\Entity\StockEntry;
 
@@ -56,7 +56,7 @@ class StockHistoryLostTest extends WebTestCase
 
         $this->getContainer()->get('doctrine.orm.default_entity_manager')->flush();
 
-        $iriCoverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriCoverter = $this->getContainer()->get('partkeepr.iri_converter');
         $iri = $iriCoverter->getIriFromItem($part1);
 
         $client->request('GET', $iri);

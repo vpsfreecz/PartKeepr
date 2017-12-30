@@ -2,6 +2,7 @@
 
 namespace PartKeepr\FootprintBundle\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -16,6 +17,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(indexes={@ORM\Index(columns={"lft"}),@ORM\Index(columns={"rgt"})})
  * The entity for our footprint categories
  * @TargetService(uri="/api/footprint_categories")
+ * @ApiResource(attributes={"force_eager"=false})
  */
 class FootprintCategory extends AbstractCategory implements CategoryPathInterface
 {
@@ -45,6 +47,14 @@ class FootprintCategory extends AbstractCategory implements CategoryPathInterfac
      * @var string
      */
     protected $categoryPath;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->footprints = new ArrayCollection();
+        $this->children = new ArrayCollection();
+    }
 
     /**
      * Sets the parent category.

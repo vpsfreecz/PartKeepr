@@ -4,9 +4,9 @@ namespace PartKeepr\DoctrineReflectionBundle\Tests;
 
 use Doctrine\Common\DataFixtures\ProxyReferenceRepository;
 use Dunglas\ApiBundle\Api\IriConverter;
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 
-class AdvancedSearchFilterTest extends WebTestCase
+class AdvancedSearchFilterTest extends \PartKeepr\CoreBundle\Foobar\WebTestCase
 {
     /**
      * @var ProxyReferenceRepository
@@ -56,7 +56,7 @@ class AdvancedSearchFilterTest extends WebTestCase
         /**
          * @var IriConverter
          */
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
 
         $this->assertEquals($iriConverter->getIriFromItem($this->fixtures->getReference("part.1")),
             $data["hydra:member"][0]["@id"]);
@@ -91,7 +91,7 @@ class AdvancedSearchFilterTest extends WebTestCase
         /**
          * @var IriConverter
          */
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
 
         $this->assertEquals($iriConverter->getIriFromItem($this->fixtures->getReference("part.1")),
             $data["hydra:member"][0]["@id"]);
@@ -104,7 +104,7 @@ class AdvancedSearchFilterTest extends WebTestCase
         /**
          * @var IriConverter
          */
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
 
         $filter = [
             [
@@ -135,7 +135,7 @@ class AdvancedSearchFilterTest extends WebTestCase
         /**
          * @var IriConverter
          */
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
 
         $filter = [
             [

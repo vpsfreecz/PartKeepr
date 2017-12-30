@@ -13,10 +13,10 @@
 
     <services>
 
-        <service id="fos_rest.request.param_fetcher" class="%fos_rest.request.param_fetcher.class%" scope="request">
-            <argument type="service" id="partkeepr.request.param_fetcher.reader"/>
-            <argument type="service" id="request"/>
-            <argument type="service" id="fos_rest.violation_formatter"/>
+        <service id="fos_rest.request.param_fetcher" class="%fos_rest.request.param_fetcher.class%">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="fos_rest.request.param_fetcher.reader"/>
+            <argument type="service" id="request_stack"/>
             <argument type="service" id="validator" on-invalid="null"/>
         </service>
 

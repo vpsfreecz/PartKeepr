@@ -7,7 +7,7 @@ use Doctrine\Common\DataFixtures\ProxyReferenceRepository;
 use PartKeepr\AuthBundle\Entity\FOSUser;
 use PartKeepr\AuthBundle\Entity\User;
 use PartKeepr\AuthBundle\Exceptions\UserProtectedException;
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 
 class UserTest extends WebTestCase
 {
@@ -51,7 +51,7 @@ class UserTest extends WebTestCase
 
     public function testChangeUserPassword()
     {
-        $builtinProvider = $this->getContainer()->get('partkeepr.userservice')->getBuiltinProvider();
+        $builtinProvider = $this->getContainer()->get('partkeepr.user_service')->getBuiltinProvider();
 
         $user = new User('bernd');
         $user->setPassword(md5('admin'));
@@ -63,7 +63,8 @@ class UserTest extends WebTestCase
 
         $client = static::makeClient(true);
 
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
+
         $iri = $iriConverter->getIriFromItem($user);
 
         $client->request('GET', $iri);
@@ -84,7 +85,7 @@ class UserTest extends WebTestCase
 
     public function testSelfChangeUserPassword()
     {
-        $builtinProvider = $this->getContainer()->get('partkeepr.userservice')->getBuiltinProvider();
+        $builtinProvider = $this->getContainer()->get('partkeepr.user_service')->getBuiltinProvider();
 
         $user = new User('bernd2');
         $user->setPassword(md5('admin'));
@@ -100,7 +101,7 @@ class UserTest extends WebTestCase
             ]
         );
 
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
         $iri = $iriConverter->getIriFromItem($user).'/changePassword';
 
         $parameters = [
@@ -138,7 +139,7 @@ class UserTest extends WebTestCase
          * @var FOSUser
          */
         $fosUser = $this->fixtures->getReference('user.admin');
-        $userService = $this->getContainer()->get('partkeepr.userservice');
+        $userService = $this->getContainer()->get('partkeepr.user_service');
 
         $user = $userService->getProxyUser($fosUser->getUsername(), $userService->getBuiltinProvider(), true);
 
@@ -151,7 +152,7 @@ class UserTest extends WebTestCase
 
         $client = static::makeClient(true);
 
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
         $iri = $iriConverter->getIriFromItem($user);
 
         $data = [
@@ -180,7 +181,7 @@ class UserTest extends WebTestCase
          * @var FOSUser
          */
         $fosUser = $this->fixtures->getReference('user.admin');
-        $userService = $this->getContainer()->get('partkeepr.userservice');
+        $userService = $this->getContainer()->get('partkeepr.user_service');
 
         $user = $userService->getProxyUser($fosUser->getUsername(), $userService->getBuiltinProvider(), true);
 
@@ -211,7 +212,7 @@ class UserTest extends WebTestCase
         $client->request('POST', '/api/users', [], [], [], json_encode($data));
 
         $userPreferenceService = $this->getContainer()->get('partkeepr.user_preference_service');
-        $userService = $this->getContainer()->get('partkeepr.userservice');
+        $userService = $this->getContainer()->get('partkeepr.user_service');
 
         /**
          * @var User
@@ -220,7 +221,7 @@ class UserTest extends WebTestCase
 
         $userPreferenceService->setPreference($user, 'foo', 'bar');
 
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
         $iri = $iriConverter->getIriFromItem($user);
 
         $client->request('DELETE', $iri);

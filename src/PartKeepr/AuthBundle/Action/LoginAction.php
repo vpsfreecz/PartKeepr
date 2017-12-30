@@ -10,8 +10,6 @@ use Symfony\Component\Serializer\Serializer;
 
 class LoginAction
 {
-    use ActionUtilTrait;
-
     /**
      * @var UserService
      */

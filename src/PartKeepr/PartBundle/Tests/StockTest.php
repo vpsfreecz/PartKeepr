@@ -5,10 +5,10 @@ namespace PartKeepr\PartBundle\Tests;
 use Doctrine\Common\DataFixtures\ProxyReferenceRepository;
 use Doctrine\ORM\Query;
 use Dunglas\ApiBundle\Api\IriConverter;
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 use PartKeepr\PartBundle\Entity\Part;
 
-class StockTest extends WebTestCase
+class StockTest extends \PartKeepr\CoreBundle\Foobar\WebTestCase
 {
     /**
      * @var ProxyReferenceRepository
@@ -51,7 +51,7 @@ class StockTest extends WebTestCase
         /**
          * @var IriConverter
          */
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
 
         $iri = $iriConverter->getIriFromItem($part);
         $iri .= '/addStock';
@@ -90,7 +90,7 @@ class StockTest extends WebTestCase
         /**
          * @var IriConverter
          */
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
 
         $iri = $iriConverter->getIriFromItem($part);
         $iri .= '/removeStock';
@@ -128,7 +128,7 @@ class StockTest extends WebTestCase
         /**
          * @var IriConverter
          */
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
 
         $iri = $iriConverter->getIriFromItem($part);
         $iri .= '/setStock';

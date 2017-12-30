@@ -4,7 +4,9 @@ namespace PartKeepr\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/** @ORM\MappedSuperclass */
+/**
+ * @ORM\MappedSuperclass()
+ */
 abstract class BaseEntity
 {
     /**

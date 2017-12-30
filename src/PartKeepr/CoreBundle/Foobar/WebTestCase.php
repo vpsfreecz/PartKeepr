@@ -1,12 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: felicitus
- * Date: 10/9/15
- * Time: 7:43 PM.
- */
-
-namespace PartKeepr\CoreBundle\Tests;
+namespace PartKeepr\CoreBundle\Foobar;
 
 /**
  * Special WebTestCase which forces to load the AppKernel. This is because the base getKernelClass() method
@@ -27,5 +20,14 @@ class WebTestCase extends \Liip\FunctionalTestBundle\Test\WebTestCase
         require_once $file;
 
         return $class;
+    }
+
+    protected function makeClient($authentication = false, array $params = array()) {
+        $client = parent::makeClient($authentication, $params);
+        $client->setServerParameter("CONTENT_TYPE", "application/json");
+        $client->setServerParameter("HTTP_ACCEPT", "application/ld+json");
+
+        return $client;
+
     }
 }

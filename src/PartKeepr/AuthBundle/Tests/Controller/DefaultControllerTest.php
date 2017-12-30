@@ -4,7 +4,7 @@ namespace PartKeepr\AuthBundle\Tests\Controller;
 
 use Doctrine\Common\DataFixtures\ProxyReferenceRepository;
 use PartKeepr\AuthBundle\Entity\FOSUser;
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {

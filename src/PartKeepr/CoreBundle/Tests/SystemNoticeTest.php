@@ -3,6 +3,7 @@
 namespace PartKeepr\CoreBundle\Tests;
 
 use Dunglas\ApiBundle\Api\IriConverter;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 
 class SystemNoticeTest extends WebTestCase
 {
@@ -21,7 +22,7 @@ class SystemNoticeTest extends WebTestCase
         /**
          * @var IriConverter
          */
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
 
         $iri = $iriConverter->getIriFromItem($notice);
         $ackIri = $iri.'/acknowledge';

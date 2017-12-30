@@ -3,7 +3,7 @@
 namespace PartKeepr\ProjectBundle\Tests;
 
 use Doctrine\Common\DataFixtures\ProxyReferenceRepository;
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 use PartKeepr\PartBundle\Entity\Part;
 use PartKeepr\ProjectBundle\Entity\Project;
 use PartKeepr\ProjectBundle\Entity\ProjectAttachment;
@@ -145,7 +145,7 @@ class ProjectTest extends WebTestCase
             'jsonld'
         );
 
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
         $iri = $iriConverter->getIriFromItem($project);
 
         $client->request(
@@ -189,7 +189,7 @@ class ProjectTest extends WebTestCase
             'jsonld'
         );
 
-        $iriConverter = $this->getContainer()->get('api_platform.iri_converter');
+        $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
         $iri = $iriConverter->getIriFromItem($project);
 
         $client->request(

@@ -2,6 +2,7 @@
 
 namespace PartKeepr\AuthBundle\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use PartKeepr\CoreBundle\Entity\BaseEntity;
 use PartKeepr\DoctrineReflectionBundle\Annotation\TargetService;
@@ -17,6 +18,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  *      name="PartKeeprUser",
  *      uniqueConstraints={@ORM\UniqueConstraint(name="username_provider", columns={"username", "provider_id"})})
  * @TargetService(uri="/api/users")
+ *
+ * @ApiResource(
+ *     collectionOperations={
+ *          "user_preferences"={"route_name"="user_preferences"}
+ *     },
+ *     attributes={"filters"={"doctrine_reflection_service.search_filter"}}
+ *  )
  */
 class User extends BaseEntity implements UserInterface, EquatableInterface
 {

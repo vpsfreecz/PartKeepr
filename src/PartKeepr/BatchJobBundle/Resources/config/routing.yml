@@ -1,0 +1,3 @@
+batchjob_actions:
+    resource: "@PartKeeprBatchJobBundle/Action"
+    type:     annotation

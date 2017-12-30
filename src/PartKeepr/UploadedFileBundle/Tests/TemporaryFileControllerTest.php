@@ -2,10 +2,10 @@
 
 namespace PartKeepr\UploadedFileBundle\Tests;
 
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class TemporaryFileControllerTest extends WebTestCase
+class TemporaryFileControllerTest extends \PartKeepr\CoreBundle\Foobar\WebTestCase
 {
     public function setUp()
     {

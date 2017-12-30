@@ -1,5 +1,4 @@
 <?php
-
 namespace PartKeepr\AuthBundle\Controller;
 
 use Doctrine\ORM\EntityRepository;
@@ -8,19 +7,19 @@ use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Request\ParamFetcher;
 use PartKeepr\AuthBundle\Entity\FOSUser;
-use PartKeepr\AuthBundle\Entity\User;
 use PartKeepr\AuthBundle\Validator\Constraints\Username;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Routing;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends FOSRestController
 {
     /**
      * Retrieves the salt for a given user.
      *
-     * @Routing\Route("/api/users/getSalt", defaults={"method" = "post","_format" = "json"})
-     * @Routing\Method({"POST"})
+     * @Route("/api/users/getSalt", defaults={"method" = "post","_format" = "json"})
+     * @Method({"POST"})
      * @RequestParam(name="username", strict=true, description="The username, 3-50 characters. Allowed characters: a-z, A-Z, 0-9, an underscore (_), a backslash (\), a slash (/), a dot (.) or a dash (-)", requirements=@Username, allowBlank=false)
      * @View()
      *
@@ -54,7 +53,7 @@ class DefaultController extends FOSRestController
     /**
      * Logs out the user.
      *
-     * @Routing\Route("/api/users/logout", defaults={"method" = "GET","_format" = "json"})
+     * @Route("/api/users/logout", defaults={"method" = "GET","_format" = "json"})
      *
      * @param Request $request
      */

@@ -1,11 +1,7 @@
-api_platform:
-    title:       "PartKeepr"
-    description: "The PartKeepr REST API"
-    collection:
-        pagination:
-            items_per_page: 30
-            client_items_per_page: true
-    formats:
-        jsonld:   ['application/ld+json']
-        csv: ['text/comma-separated-values']
-        xlsx: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
+services:
+    partkeepr.iri_converter:
+        alias: api_platform.iri_converter
+        public: true
+    PartKeepr\AuthBundle\Security\Authentication\AuthenticationProviderManager:
+        alias: security.authentication.manager
+        public: true

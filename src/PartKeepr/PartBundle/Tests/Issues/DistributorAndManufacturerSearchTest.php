@@ -3,7 +3,7 @@
 namespace PartKeepr\PartBundle\Tests\Issues;
 
 use Doctrine\Common\DataFixtures\ProxyReferenceRepository;
-use PartKeepr\CoreBundle\Tests\WebTestCase;
+use PartKeepr\CoreBundle\Foobar\WebTestCase;
 use PartKeepr\DistributorBundle\Entity\Distributor;
 use PartKeepr\ManufacturerBundle\Entity\Manufacturer;
 use PartKeepr\PartBundle\Entity\Part;
@@ -59,7 +59,7 @@ class DistributorAndManufacturerSearchTest extends WebTestCase
         $filter = [
             'property' => 'manufacturers.manufacturer',
             'operator' => '=',
-            'value'    => $this->getContainer()->get('api_platform.iri_converter')->getIriFromItem($manufacturer),
+            'value'    => $this->getContainer()->get('partkeepr.iri_converter')->getIriFromItem($manufacturer),
         ];
 
         $filters = [$filter];
@@ -67,7 +67,7 @@ class DistributorAndManufacturerSearchTest extends WebTestCase
         $client = static::makeClient(true);
 
         $partResource = $this->getContainer()->get('resource.part');
-        $iri = $this->getContainer()->get('api_platform.iri_converter')->getIriFromResource($partResource);
+        $iri = $this->getContainer()->get('partkeepr.iri_converter')->getIriFromResource($partResource);
 
         $client->request('GET', $iri, ['filter' => json_encode($filters)]);
 
@@ -99,7 +99,7 @@ class DistributorAndManufacturerSearchTest extends WebTestCase
         $filter = [
             'property' => 'distributors.distributor',
             'operator' => '=',
-            'value'    => $this->getContainer()->get('api_platform.iri_converter')->getIriFromItem($distributor),
+            'value'    => $this->getContainer()->get('partkeepr.iri_converter')->getIriFromItem($distributor),
         ];
 
         $filters = [$filter];
@@ -107,7 +107,7 @@ class DistributorAndManufacturerSearchTest extends WebTestCase
         $client = static::makeClient(true);
 
         $partResource = $this->getContainer()->get('resource.part');
-        $iri = $this->getContainer()->get('api_platform.iri_converter')->getIriFromResource($partResource);
+        $iri = $this->getContainer()->get('partkeepr.iri_converter')->getIriFromResource($partResource);
 
         $client->request('GET', $iri, ['filter' => json_encode($filters)]);
 

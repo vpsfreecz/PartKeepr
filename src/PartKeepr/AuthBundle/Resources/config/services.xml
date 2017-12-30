@@ -5,12 +5,12 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="security.authentication.manager.class">PartKeepr\AuthBundle\Security\Authentication\AuthenticationProviderManager</parameter>
-        <parameter key="security.authentication.basic_entry_point.class">PartKeepr\AuthBundle\Security\EntryPoint\NullEntryPoint</parameter>
+        <parameter key="security.authentication.manager">PartKeepr\AuthBundle\Security\Authentication\AuthenticationProviderManager</parameter>
+        <parameter key="security.authentication.basic_entry_point">PartKeepr\AuthBundle\Security\EntryPoint\NullEntryPoint</parameter>
     </parameters>
 
     <services>
-        <service id="partkeepr.userservice" class="PartKeepr\AuthBundle\Services\UserService">
+        <service id="partkeepr.user_service" class="PartKeepr\AuthBundle\Services\UserService">
             <argument type="service" id="security.token_storage"/>
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <argument type="service" id="fos_user.util.user_manipulator"/>

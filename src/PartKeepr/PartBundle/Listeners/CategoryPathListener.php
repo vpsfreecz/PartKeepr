@@ -7,9 +7,12 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 use PartKeepr\PartBundle\Entity\PartCategory;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class CategoryPathListener extends ContainerAware
+class CategoryPathListener
 {
+    use ContainerAwareTrait;
+
     public function __construct(Container $container)
     {
         $this->setContainer($container);

@@ -63,6 +63,8 @@ class UserService
      */
     public function getUser()
     {
+        echo "BLABLA";
+        print_r($this->tokenStorage->getToken());
         $tokenProvider = $this->tokenStorage->getToken()->getAttribute('provider');
 
         $provider = $this->getProvider($tokenProvider);

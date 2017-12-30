@@ -9,6 +9,8 @@ class AppKernel extends Kernel
     {
         // Base 3rd party bundles required for PartKeepr operation
         $bundles = [
+            new ApiPlatform\Core\Bridge\Symfony\Bundle\ApiPlatformBundle(),
+            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -18,19 +20,17 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new PartKeepr\DoctrineReflectionBundle\PartKeeprDoctrineReflectionBundle(),
             new PartKeepr\RESTBundle\PartKeeprRESTBundle(),
-            new Escape\WSSEAuthenticationBundle\EscapeWSSEAuthenticationBundle(),
+
             new SpriteGenerator\SpriteGeneratorBundle(),
-            new Dunglas\ApiBundle\DunglasApiBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Brainbits\FugueIconsBundle\BrainbitsFugueIconsBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new \PartKeepr\RemoteFileLoader\PartKeeprRemoteFileLoaderBundle(),
-            new \FR3D\LdapBundle\FR3DLdapBundle(),
+            #new \FR3D\LdapBundle\FR3DLdapBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
         ];
 
@@ -79,10 +79,10 @@ class AppKernel extends Kernel
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
+        $loader->load(__DIR__ . '/config/config_' . $this->getEnvironment() . '.yml');
 
         if ($this->getEnvironment() !== 'test') {
-            $customConfig = __DIR__.'/config/config_custom.yml';
+            $customConfig = __DIR__ . '/config/config_custom.yml';
 
             if (file_exists($customConfig)) {
                 $loader->load($customConfig);
@@ -114,7 +114,7 @@ class AppKernel extends Kernel
             $environment = $this->environment;
         }
 
-        return $this->rootDir.'/cache/'.$environment;
+        return $this->rootDir . '/cache/' . $environment;
     }
 
     /**

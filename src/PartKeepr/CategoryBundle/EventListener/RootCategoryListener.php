@@ -8,10 +8,11 @@ use PartKeepr\CategoryBundle\Exception\OnlySingleRootNodeAllowedException;
 use PartKeepr\CategoryBundle\Exception\RootMayNotBeDeletedException;
 use PartKeepr\CategoryBundle\Exception\RootNodeNotFoundException;
 use Symfony\Component\DependencyInjection\Container;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class RootCategoryListener extends ContainerAware
+class RootCategoryListener
 {
+    use ContainerAwareTrait;
     /**
      * @var string
      */

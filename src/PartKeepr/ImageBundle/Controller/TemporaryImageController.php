@@ -2,8 +2,6 @@
 
 namespace PartKeepr\ImageBundle\Controller;
 
-use Dunglas\ApiBundle\Action\ActionUtilTrait;
-use Dunglas\ApiBundle\Api\ResourceInterface;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\Annotations\View;
 use PartKeepr\ImageBundle\Entity\TempImage;
@@ -16,8 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TemporaryImageController extends ImageController
 {
-    use ActionUtilTrait;
-
     /**
      * Handles a temporary image upload.
      *

@@ -6,9 +6,12 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 use PartKeepr\PartBundle\Entity\Part;
 use PartKeepr\StockBundle\Entity\StockEntry;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class StockLevelListener extends ContainerAware
+class StockLevelListener
 {
+    use ContainerAwareTrait;
+
     /**
      * Recomputes the stock level for each part.
      *

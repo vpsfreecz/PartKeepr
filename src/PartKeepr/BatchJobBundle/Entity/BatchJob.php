@@ -12,7 +12,17 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity
  * @TargetService(uri="/api/batch_jobs")
- * @ApiResource(attributes={"filters"={"doctrine_reflection_service.search_filter"}})
+ * @ApiResource(
+ *     itemOperations={
+ *          "execute"={
+ *              "route_name"="batch_job_execute",
+ *              "swagger_context"={
+ *                  "summary"= "Executes the batch job"
+ *              }
+ *          }
+ *     },
+ *     attributes={"filters"={"doctrine_reflection_service.search_filter"}}
+ *     )
  */
 class BatchJob extends BaseEntity
 {
