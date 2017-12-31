@@ -3,7 +3,6 @@
 namespace PartKeepr\AuthBundle\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\ORM\Mapping as ORM;
 use PartKeepr\CoreBundle\Entity\BaseEntity;
 use PartKeepr\DoctrineReflectionBundle\Annotation\TargetService;
@@ -22,8 +21,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ApiResource(
  *     collectionOperations={
- *          "user_preferences"={"route_name"="user_preferences"},
  *          "post"={"route_name"="user_post"}
+ *     },
+ *     itemOperations={
+ *          "put"={"route_name"="user_put"},
+ *     "get"={"method"="get"}
  *     },
  *     attributes={
  *          "filters"={"doctrine_reflection_service.search_filter"},

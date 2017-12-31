@@ -3,6 +3,7 @@
 namespace PartKeepr\AuthBundle\Action;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Routing\Annotation\Route;
 use PartKeepr\AuthBundle\Entity\User;
 use PartKeepr\AuthBundle\Exceptions\UserProtectedException;
@@ -35,14 +36,18 @@ class DeleteUserAction
     }
 
     /**
-     * Returns an item to delete.
+     * Retrieves a collection of resources.
      *
+     * @Route(
+     *     name="user_delete",
+     *     path="/api/users/{id}",
+     *     defaults={"_api_resource_class"=User::class, "_api_item_operation_name"="delete"}
+     * )
+     * @Security("has_role('ROLE_USER')")
      * @Method("DELETE")
-     *
-     * @throws NotFoundHttpException
+     * @param Request $request
+     * @return User
      * @throws UserProtectedException
-     *
-     * @return mixed
      */
     public function __invoke($data)
     {

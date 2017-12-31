@@ -6,8 +6,10 @@ use PartKeepr\AuthBundle\Entity\User;
 use PartKeepr\AuthBundle\Exceptions\UserLimitReachedException;
 use PartKeepr\AuthBundle\Exceptions\UserProtectedException;
 use PartKeepr\AuthBundle\Services\UserService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class PutUserAction
@@ -31,17 +33,19 @@ class PutUserAction
     }
 
     /**
-     * Create a new item.
+     * Retrieves a collection of resources.
      *
-     * @param Request    $request
-     * @param string|int $id
-     *
-     * @throws NotFoundHttpException
-     * @throws RuntimeException
+     * @Route(
+     *     name="user_put",
+     *     path="/api/users/{id}",
+     *     defaults={"_api_resource_class"=User::class, "_api_item_operation_name"="put"}
+     * )
+     * @Security("has_role('ROLE_USER')")
+     * @Method("PUT")
+     * @param Request $request
+     * @return User
      * @throws UserProtectedException
      * @throws UserLimitReachedException
-     *
-     * @return mixed
      */
     public function __invoke(Request $request, $data)
     {
