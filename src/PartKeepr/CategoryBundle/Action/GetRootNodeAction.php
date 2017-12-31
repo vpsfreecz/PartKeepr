@@ -2,10 +2,6 @@
 
 namespace PartKeepr\CategoryBundle\Action;
 
-use Dunglas\ApiBundle\Action\ActionUtilTrait;
-use Dunglas\ApiBundle\Api\ResourceInterface;
-use Dunglas\ApiBundle\Exception\RuntimeException;
-use Gedmo\Tree\Entity\Repository\AbstractTreeRepository;
 use PartKeepr\CategoryBundle\Exception\RootNodeNotFoundException;
 use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;

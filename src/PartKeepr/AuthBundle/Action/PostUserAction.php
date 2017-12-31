@@ -2,11 +2,16 @@
 
 namespace PartKeepr\AuthBundle\Action;
 
+use ApiPlatform\Core\Serializer\SerializerContextBuilderInterface;
+use ApiPlatform\Core\Util\RequestAttributesExtractor;
 use PartKeepr\AuthBundle\Entity\User;
 use PartKeepr\AuthBundle\Exceptions\UserLimitReachedException;
 use PartKeepr\AuthBundle\Services\UserService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class PostUserAction
@@ -21,43 +26,49 @@ class PostUserAction
      */
     private $userService;
 
+     private $serializerContextBuilder;
+
     public function __construct(
         SerializerInterface $serializer,
-        UserService $userService
+        UserService $userService,
+        SerializerContextBuilderInterface $serializerContextBuilder
     ) {
         $this->serializer = $serializer;
         $this->userService = $userService;
+         $this->serializerContextBuilder = $serializerContextBuilder;
     }
 
     /**
-     * Create a new item.
+     * Retrieves a collection of resources.
      *
+     * @Route(
+     *     name="user_post",
+     *     path="/api/users",
+     *     defaults={"_api_resource_class"=User::class, "_api_collection_operation_name"="post"}
+     * )
+     * @Security("has_role('ROLE_USER')")
+     * @Method("POST")
      * @param Request $request
-     *
-     * @throws NotFoundHttpException
-     * @throws RuntimeException
-     * @throws UserLimitReachedException
-     *
-     * @return mixed
+     * @return JsonResponse
      */
     public function __invoke(Request $request)
     {
-        /**
-         * @var ResourceInterface
-         */
-        list($resourceType, $format) = $this->extractAttributes($request);
+        $attributes = RequestAttributesExtractor::extractAttributes($request);
 
         if ($this->userService->checkUserLimit() === true) {
             throw new UserLimitReachedException();
         }
+
+        $context = $this->serializerContextBuilder->createFromRequest($request, false, $attributes);
+
         /**
          * @var User
          */
         $data = $this->serializer->deserialize(
             $request->getContent(),
-            $resourceType->getEntityClass(),
-            $format,
-            $resourceType->getDenormalizationContext()
+            $attributes["resource_class"],
+            "jsonld",
+            $context
         );
 
         $data->setProvider($this->userService->getBuiltinProvider());

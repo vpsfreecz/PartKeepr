@@ -3,6 +3,7 @@
 namespace PartKeepr\AuthBundle\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\ORM\Mapping as ORM;
 use PartKeepr\CoreBundle\Entity\BaseEntity;
 use PartKeepr\DoctrineReflectionBundle\Annotation\TargetService;
@@ -21,9 +22,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ApiResource(
  *     collectionOperations={
- *          "user_preferences"={"route_name"="user_preferences"}
+ *          "user_preferences"={"route_name"="user_preferences"},
+ *          "post"={"route_name"="user_post"}
  *     },
- *     attributes={"filters"={"doctrine_reflection_service.search_filter"}}
+ *     attributes={
+ *          "filters"={"doctrine_reflection_service.search_filter"},
+ *          "normalization_context"={"groups"={"default"}},
+ *          "denormalization_context"={"groups"={"default"}},
+ *     }
  *  )
  */
 class User extends BaseEntity implements UserInterface, EquatableInterface
@@ -84,7 +90,12 @@ class User extends BaseEntity implements UserInterface, EquatableInterface
     private $provider;
 
     /**
-     * @ORM\OneToMany(targetEntity="PartKeepr\TipOfTheDayBundle\Entity\TipOfTheDayHistory", mappedBy="user", cascade={"remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(
+     *     targetEntity="PartKeepr\TipOfTheDayBundle\Entity\TipOfTheDayHistory",
+     *     mappedBy="user",
+     *     cascade={"remove"},
+     *     orphanRemoval=true
+     * )
      */
     private $tipHistories;
 
@@ -96,7 +107,7 @@ class User extends BaseEntity implements UserInterface, EquatableInterface
      *
      * @var string
      */
-    private $initialUserPreferences;
+    private $initialUserPreferences = "";
 
     /**
      * Defines if the user is active.
@@ -148,7 +159,7 @@ class User extends BaseEntity implements UserInterface, EquatableInterface
      */
     public function setAdmin($bAdmin)
     {
-        $this->admin = (bool) $bAdmin;
+        $this->admin = (bool)$bAdmin;
     }
 
     /**

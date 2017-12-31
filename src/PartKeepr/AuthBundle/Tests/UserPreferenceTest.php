@@ -36,8 +36,7 @@ class UserPreferenceTest extends \PartKeepr\CoreBundle\Foobar\WebTestCase
 
         $response = json_decode($client->getResponse()->getContent());
 
-        var_dump($client->getResponse()->getContent());
-        //$this->assertInternalType('object', $response, var_export($client->getResponse()->getContent(), true));
+        $this->assertInternalType('object', $response, var_export($client->getResponse()->getContent(), true));
 
         $this->assertObjectHasAttribute('preferenceKey', $response);
         $this->assertObjectHasAttribute('preferenceValue', $response);

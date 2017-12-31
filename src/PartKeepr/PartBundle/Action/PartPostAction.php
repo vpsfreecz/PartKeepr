@@ -2,9 +2,6 @@
 
 namespace PartKeepr\PartBundle\Action;
 
-use Dunglas\ApiBundle\Action\ActionUtilTrait;
-use Dunglas\ApiBundle\Api\ResourceInterface;
-use Dunglas\ApiBundle\Exception\RuntimeException;
 use PartKeepr\PartBundle\Entity\Part;
 use PartKeepr\PartBundle\Exceptions\InternalPartNumberNotUniqueException;
 use PartKeepr\PartBundle\Exceptions\PartLimitExceededException;

@@ -2,15 +2,18 @@
 
 namespace PartKeepr\AuthBundle\Action;
 
-use Dunglas\ApiBundle\Action\ActionUtilTrait;
 use FOS\UserBundle\Model\UserManagerInterface;
 use FOS\UserBundle\Util\UserManipulator;
 use PartKeepr\AuthBundle\Exceptions\OldPasswordWrongException;
 use PartKeepr\AuthBundle\Exceptions\PasswordChangeNotAllowedException;
 use PartKeepr\AuthBundle\Services\UserService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
+use PartKeepr\AuthBundle\Entity\User;
 
 class ChangePasswordAction
 {
@@ -53,6 +56,20 @@ class ChangePasswordAction
         $this->container = $container;
     }
 
+    /**
+     * Retrieves a collection of resources.
+     *
+     * @Route(
+     *     name="user_change_password",
+     *     path="/api/users/{id}/changePassword",
+     *     defaults={"_api_resource_class"=User::class, "_api_item_operation_name"="changePassword"}
+     * )
+     * @Security("has_role('ROLE_USER')")
+     * @Method("PUT")
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
     public function __invoke(Request $request)
     {
         if ($this->container->hasParameter('partkeepr.auth.allow_password_change') &&

@@ -2,11 +2,8 @@
 
 namespace PartKeepr\UploadedFileBundle\Controller;
 
-use Dunglas\ApiBundle\Action\ActionUtilTrait;
-use Dunglas\ApiBundle\Api\ResourceInterface;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\Annotations\View;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use PartKeepr\ImageBundle\Response\TemporaryImageUploadResponse;
 use PartKeepr\UploadedFileBundle\Entity\TempUploadedFile;
 use Symfony\Component\HttpFoundation\File\File;

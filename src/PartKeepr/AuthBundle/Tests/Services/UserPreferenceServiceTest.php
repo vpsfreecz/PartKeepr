@@ -57,7 +57,7 @@ class UserPreferenceServiceTest extends WebTestCase
         $user = $this->getContainer()->get('partkeepr.user_service')->getProxyUser('admin',
             $userService->getBuiltinProvider(), true);
 
-        $this->setExpectedException("PartKeepr\AuthBundle\Exceptions\UserPreferenceNotFoundException");
+        $this->expectException("PartKeepr\AuthBundle\Exceptions\UserPreferenceNotFoundException");
         $service->getPreference($user, 'BLA');
     }
 }

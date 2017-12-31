@@ -70,10 +70,11 @@ class UserTest extends WebTestCase
         $client->request('GET', $iri);
 
         $response = json_decode($client->getResponse()->getContent());
+        var_dump($response);
 
         $response->{'newPassword'} = 'foobar';
 
-        $client->request('PUT', $iri, [], [], [], json_encode($response));
+        $client->request('PUT', $iri, [], [], ['CONTENT_TYPE' => 'application/json', 'HTTP_ACCEPT' => 'application/ld+json'], json_encode($response));
 
         $response = json_decode($client->getResponse()->getContent());
 

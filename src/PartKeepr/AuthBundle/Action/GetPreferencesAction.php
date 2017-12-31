@@ -45,7 +45,7 @@ class GetPreferencesAction
      * Retrieves a collection of resources.
      *
      * @Route(
-     *     name="user_preferences",
+     *     name="user_preferences_get",
      *     path="/api/user_preferences",
      * )
      * @Security("has_role('ROLE_USER')")
@@ -59,9 +59,6 @@ class GetPreferencesAction
 
         $preferences = $this->userPreferenceService->getPreferences($user);
 
-        /*
-         * @var ResourceInterface $resourceType
-         */
         $serializedData = $this->serializer->normalize(
             $preferences,
             'json'

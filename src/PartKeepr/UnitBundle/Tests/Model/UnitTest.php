@@ -4,8 +4,9 @@ namespace PartKeepr\UnitBundle\Tests\Model;
 
 use PartKeepr\SiPrefixBundle\Entity\SiPrefix;
 use PartKeepr\UnitBundle\Entity\Unit;
+use PHPUnit\Framework\TestCase;
 
-class UnitTest extends \PHPUnit_Framework_TestCase
+class UnitTest extends TestCase
 {
     public function testName()
     {

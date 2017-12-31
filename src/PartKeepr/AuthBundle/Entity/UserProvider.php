@@ -2,6 +2,7 @@
 
 namespace PartKeepr\AuthBundle\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use PartKeepr\CoreBundle\Entity\BaseEntity;
 use PartKeepr\DoctrineReflectionBundle\Annotation\TargetService;
@@ -13,6 +14,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *      name="UserProvider",
  *      uniqueConstraints={@ORM\UniqueConstraint(name="type", columns={"type"})})
  * @TargetService(uri="/api/user_providers")
+ * @ApiResource(
+ *     attributes={
+ *          "normalization_context"={"groups"={"default"}},
+ *          "denormalization_context"={"groups"={"default"}},
+ *     }
+ * )
  */
 class UserProvider extends BaseEntity
 {

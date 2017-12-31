@@ -3,8 +3,9 @@
 namespace PartKeepr\SiPrefixBundle\Tests\Model;
 
 use PartKeepr\SiPrefixBundle\Entity\SiPrefix;
+use PHPUnit\Framework\TestCase;
 
-class SiPrefixTest extends \PHPUnit_Framework_TestCase
+class SiPrefixTest extends TestCase
 {
     public function testPrefix()
     {
