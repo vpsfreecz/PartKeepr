@@ -9,6 +9,11 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    PartKeepr\CoreBundle\Action\:
+        resource: '../../src/PartKeepr/CoreBundle/Action'
+        public: true
+        tags: ['controller.service_arguments']
+
     partkeepr_exception_normalizer:
       class: PartKeepr\DoctrineReflectionBundle\Exception\ExceptionNormalizer
       tags:

@@ -53,6 +53,8 @@ _setup:
 _auth:
     resource: "@PartKeeprAuthBundle/Resources/config/routing.yml"
 
+_core:
+    resource: "@PartKeeprCoreBundle/Resources/config/routing.yml"
 
 _footprint:
     resource: "@PartKeeprFootprintBundle/Resources/config/routing.yml"

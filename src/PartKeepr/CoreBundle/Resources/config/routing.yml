@@ -1,0 +1,3 @@
+core_actions:
+    resource: "@PartKeeprCoreBundle/Action"
+    type:     annotation

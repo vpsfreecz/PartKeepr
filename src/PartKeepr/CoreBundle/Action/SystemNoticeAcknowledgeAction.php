@@ -2,18 +2,15 @@
 
 namespace PartKeepr\CoreBundle\Action;
 
-use Doctrine\ORM\EntityManager;
-use PartKeepr\CoreBundle\Entity\SystemNotice;
 use PartKeepr\CoreBundle\Services\SystemNoticeService;
+use PartKeepr\CoreBundle\Entity\SystemNotice;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class SystemNoticeAcknowledgeAction
 {
-    /**
-     * @var EntityManager
-     */
-    private $entityManager;
-
     /**
      * @var SystemNoticeService
      */
@@ -21,18 +18,25 @@ class SystemNoticeAcknowledgeAction
 
 
     public function __construct(
-        EntityManager $entityManager,
         SystemNoticeService $systemNoticeService
     ) {
-        $this->entityManager = $entityManager;
         $this->systemNoticeService = $systemNoticeService;
     }
 
     /**
-     * Sets the acknowledged flag for a system notice.
+     * Retrieves a collection of resources.
      *
+     * @Route(
+     *     name="system_notice_acknowledge",
+     *     path="/api/system_notices/{id}/acknowledge",
+     *     defaults={"_api_resource_class"=SystemNotice::class, "_api_item_operation_name"="put"}
+     * )
+     * @Security("has_role('ROLE_USER')")
+     * @Method("PUT")
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function __invoke($data)
+    public function __invoke($data = null)
     {
         $this->systemNoticeService->acknowledge($data);
         return $data;

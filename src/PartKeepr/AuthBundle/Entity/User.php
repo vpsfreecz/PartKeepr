@@ -25,7 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     },
  *     itemOperations={
  *          "put"={"route_name"="user_put"},
- *     "get"={"method"="get"}
+ *          "get"={"method"="get"}
  *     },
  *     attributes={
  *          "filters"={"doctrine_reflection_service.search_filter"},

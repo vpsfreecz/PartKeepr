@@ -2,7 +2,7 @@
 
 namespace PartKeepr\CoreBundle\Tests;
 
-use Dunglas\ApiBundle\Api\IriConverter;
+use ApiPlatform\Core\Api\IriConverterInterface;
 use PartKeepr\CoreBundle\Foobar\WebTestCase;
 
 class SystemNoticeTest extends WebTestCase
@@ -20,7 +20,7 @@ class SystemNoticeTest extends WebTestCase
         $notice = $systemNoticeService->createUniqueSystemNotice('FOO', 'BAR', 'DING');
 
         /**
-         * @var IriConverter
+         * @var IriConverterInterface
          */
         $iriConverter = $this->getContainer()->get('partkeepr.iri_converter');
 
@@ -45,6 +45,8 @@ class SystemNoticeTest extends WebTestCase
         );
 
         $response = json_decode($client->getResponse()->getContent());
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertEquals(true, $response->acknowledged);
     }
 }
