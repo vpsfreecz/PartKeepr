@@ -1,3 +1,17 @@
+Forked version of PartKeepr maintained for use as inventory management with (for now) few modifications.
+
+
+To-dos:
+Change Octopart API to Mouser API
+
+
+
+
+
+
+
+Original Readme
+---------
 [![PartKeepr](https://partkeepr.org/images/partkeepr-banner.png)](https://www.partkeepr.org)
 
 [![JSON-LD enabled](http://json-ld.org/images/json-ld-button-88.png)](http://json-ld.org)
